@@ -26,8 +26,30 @@ public class userEntity {
     @ColumnDefault("user")
     private String role;     //Enum  -- admin,user,manager
 
-    @CreationTimestamp
+
+
+
+    @Column(name="createDate")
     private Timestamp createDate;
 
 
+    public userEntity(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.role = "user";
+        this.createDate = null;
+    }
+
+    @Override
+    public String toString() {
+        return "userEntity{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                ", createDate=" + createDate +
+                '}';
+    }
 }
