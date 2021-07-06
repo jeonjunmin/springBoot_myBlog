@@ -2,6 +2,7 @@ package com.example.myBlog.entity;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
+import java.time.LocalDateTime;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -12,7 +13,7 @@ public class userEntity {
 
     @Id //PK
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private  int id;  //시퀀스
+    private int id;  //시퀀스
 
     @Column(nullable = false , length = 30)
     private String username; //아이디
@@ -26,19 +27,17 @@ public class userEntity {
     @ColumnDefault("user")
     private String role;     //Enum  -- admin,user,manager
 
-
-
-
-    @Column(name="createDate")
-    private Timestamp createDate;
+    //@Column(name="createdDate")
+    @CreationTimestamp
+    private Timestamp createdDate;
 
 
     public userEntity(String username, String password, String email) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = "user";
-        this.createDate = null;
+        //this.role = "user";
+        //this.createdDate = LocalDateTime.now();
     }
 
     @Override
@@ -49,7 +48,7 @@ public class userEntity {
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
-                ", createDate=" + createDate +
+                ", createDate=" + createdDate +
                 '}';
     }
 }

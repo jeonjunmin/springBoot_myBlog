@@ -22,6 +22,7 @@ public class userController {
 
     @PostMapping("/user/create")
     public String userCreate(userDao userform){
+
         System.out.println("User Dao Info ---> "+userform.toString());
 
         //1. Dao를 Entity로 변환
